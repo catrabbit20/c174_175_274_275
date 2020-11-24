@@ -1,0 +1,28 @@
+import pygame, math
+import objects
+from objects.baseObject import BaseObject
+
+class Particle(BaseObject):
+    """
+    missile
+    """    
+    sprite = pygame.image.load('assets/missile_sm.png')
+    particleGroup = pygame.sprite.Group()
+    def __init__(self, radius, color, surface, **keywords):
+        #loads the base class
+        super().__init__(**keywords)
+        self.call_time = None        
+        # Move to sub-classes for different damages?
+        self.damage = 2
+        self.surface = surface
+        self.color = color
+        self.radius
+    def update(self):
+        # Update position
+        x, y = self.position
+        rad = self.direction * math.pi / 180
+        x += self.speed*math.cos(rad)
+        y += -self.speed*math.sin(rad)
+        self.position = (x, y)
+        pygame.drawrect(self.surface,self.color, self.position, self.radius)
+objects.object_types["particle"] = Particle

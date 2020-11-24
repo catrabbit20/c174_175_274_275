@@ -1,0 +1,29 @@
+import pygame, math
+import objects
+from objects.baseObject import BaseObject
+
+class Beam(BaseObject):
+    """
+    the visual effect for an alien jumping between asteroids (colored line)
+    """       
+    beamGroup = pygame.sprite.Group()
+    def __init__(self, obj1, obj2, color, surface, **keywords):
+        #loads the base class
+        super().__init__(**keywords)
+        self.call_time = None        
+        self.surface = surface
+        self.color = color
+        #health determines how long the effect lasts
+        self.health = 5
+        self.pos1 = obj1.position
+        self.pos2 = obj2.position
+
+    def update(self):
+        # Update position
+        self.hurt(1)
+        self.rect = \
+            pygame.draw.line(
+            self.surface, self.color, 
+            self.pos1, self.pos2)
+
+objects.object_types["beam"] = Beam

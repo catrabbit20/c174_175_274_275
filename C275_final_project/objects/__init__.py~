@@ -1,0 +1,11 @@
+__all__ = ['baseObject',
+           'asteroid',
+           'ship',
+           'spaceStation',
+           'missile',
+           'particle',
+           'infested',
+           'beam',
+           'alien',
+           'score']
+object_types = {}
